@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrowing Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h1>Borrowing Dashboard</h1>
+
+<!-- Section to display books -->
+<section id="book-list">
+    <h2>Available Books</h2>
+    <ul id="books">
+        <!-- Books will be listed here -->
+    </ul>
+</section>
+
+<!-- Form to borrow a book -->
+<section id="borrow-book">
+    <h2>Borrow a Book</h2>
+    <form id="borrow-form">
+        <label for="book-id">Book ID:</label>
+        <input type="number" id="book-id" name="book-id" required>
+        <button type="submit">Borrow</button>
+    </form>
+</section>
+
+<!-- Form to return a book -->
+<section id="return-book">
+    <h2>Return a Book</h2>
+    <form id="return-form">
+        <label for="return-book-id">Book ID:</label>
+        <input type="number" id="return-book-id" name="return-book-id" required>
+        <button type="submit">Return</button>
+    </form>
+</section>
+
+<script>
+    // Function to retrieve and display books
+    function loadBooks() {
+        $.get('/books', function(data) {
+            $('#books').empty();
+            data.forEach(function(book) {
+                $('#books').append('<li>' + book.name + ' - ' + book.status + '</li>');
+            });
+        });
+    }
+
+    // Function to handle book borrowing
+    $('#borrow-form').submit(function(event) {
+        event.preventDefault();
+        var bookId = $('#book-id').val();
+        $.post('/borrowingservice/borrow', { id: bookId }, function(response) {
+            alert('Book borrowed successfully!');
+            loadBooks(); // Reload the book list
+        });
+    });
+
+    // Function to handle book returning
+    $('#return-form').submit(function(event) {
+        event.preventDefault();
+        var bookId = $('#return-book-id').val();
+        $.post('/borrowingservice/return', { id: bookId }, function(response) {
+            alert('Book returned successfully!');
+            loadBooks(); // Reload the book list
+        });
+    });
+
+    // Initial load of books
+    loadBooks();
+</script>
+</body>
+</html>
