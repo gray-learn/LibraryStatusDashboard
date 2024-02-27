@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.gray</groupId>
-    <artifactId>BookService</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <artifactId>BookService</artifactId>
     <name>BookService</name>
     <description>BookService</description>
     <properties>

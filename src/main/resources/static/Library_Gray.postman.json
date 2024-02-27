@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "79f7e9d9-f2c7-4e89-91e4-ceac8aca98e9",
+		"name": "Library_Gray",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29539904"
+	},
+	"item": [
+		{
+			"name": "GeeAllBooks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{bookapi}}books"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAvailableBook",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{bookapi}}availableBooks"
+			},
+			"response": []
+		},
+		{
+			"name": "GetBorrowedBook",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{bookapi}}borrowedBooks"
+			},
+			"response": []
+		},
+		{
+			"name": "AddBook",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Half Sugar\",\n    \"isbn\": \"1234123445677654\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{bookapi}}add"
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateBook",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{bookapi}}update/7"
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBook",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{bookapi}}delete/7"
+			},
+			"response": []
+		}
+	]
+}

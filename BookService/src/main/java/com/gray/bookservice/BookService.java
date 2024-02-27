@@ -11,7 +11,6 @@ import java.util.Optional;
 @Service
 public class BookService {
 
-//    @Autowired
     private final IBookRespository bookRepository;
 
     @Autowired
@@ -41,9 +40,26 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public ResponseEntity<String> addBook(@RequestBody Book book){
+    public ResponseEntity<String> addBook(Book book){
+        book.setStatus("AVAILABLE");
         bookRepository.save(book);
         return ResponseEntity.ok("Book Added Successfully");
+    }
+
+    public ResponseEntity<String> updateBook(Long id){
+        if(!bookRepository.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }else{
+            Book uptbook=  bookRepository.findById(id).get();
+            if(uptbook.getStatus().equals("AVAILABLE")){
+                uptbook.setStatus("BORROWED");
+            }else{ // BORROWED
+                uptbook.setStatus("AVAILABLE");
+            }
+            uptbook.setId(id);
+            bookRepository.save(uptbook);
+        }
+        return ResponseEntity.ok("Book updated Successfully");
     }
 
     public ResponseEntity<String> deleteById(Long id){

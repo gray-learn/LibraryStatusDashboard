@@ -1,0 +1,112 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8f7; /* Soft green background */
+}
+
+h1 {
+    text-align: center;
+    color: #2e8b57; /* Botanic green */
+}
+
+section {
+    background: white;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px; /* Center sections with a max width */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 8px;
+    border-bottom: 1px solid #e6eee6; /* Light green */
+    color: #556b2f; /* Dark Olive Green */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #2e8b57; /* Botanic green */
+}
+
+input[type="text"],
+input[type="number"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #a2d9a2; /* Light green border */
+    border-radius: 4px;
+    background-color: #e6f2e6; /* Very light green background */
+}
+
+button {
+    background-color: #3cb371; /* Medium Sea Green */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #339966; /* Slightly darker green */
+}
+
+#delete-button {
+    background-color: #8fbc8f; /* Dark Sea Green */
+}
+
+#delete-button:hover {
+    background-color: #79a879; /* Slightly darker */
+}
+
+#borrow-button, #return-button {
+    background-color: #20b2aa; /* Light Sea Green */
+}
+
+#borrow-button:hover, #return-button:hover {
+    background-color: #198d8c; /* Darker shade for hover */
+}
+
+form {
+    background-color: #e6f2e6; /* Very light green background */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+h2 {
+    color: #2e8b57; /* Botanic green */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd; /* Adds borders around table headers and cells */
+    padding: 8px;
+    text-align: left;
+}
+
+thead {
+    background-color: #f2f2f2; /* Light grey background for table header */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra striping for rows */
+}
+
+tr:hover {
+    background-color: #eef; /* Highlight row on hover */
+}

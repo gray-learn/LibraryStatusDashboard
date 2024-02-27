@@ -37,16 +37,18 @@ public class BookController {
     public Book getBookById(@PathVariable Long id) {
         return bookService.getBookById(id).orElseThrow(() -> new RuntimeException("Book not found"));
     }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteBook(@PathVariable Long id){
-        return bookService.deleteById(id);
-    }
-
     @PostMapping("/add")
     public ResponseEntity<String> addBook(@RequestBody Book book){
-        return ResponseEntity.ok("Add book");
+        return bookService.addBook(book);
+    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String>  updateBook(@PathVariable("id") Long id){
+        return bookService.updateBook(id);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteBook(@PathVariable("id")  Long id){
+        return bookService.deleteById(id);
+    }
 
 }

@@ -7,61 +7,25 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.UUID;
-
-//@Component
-//@AllArgsConstructor
 
 @Configuration
 @EntityScan(basePackageClasses = {com.gray.bookservice.Book.class})
 @EnableJpaRepositories(basePackageClasses = {com.gray.bookservice.IBookRespository.class})
 public class DBSeeder {
+// Marks this class as configuration class which defines beans and settings for the Spring context.
+//    @Configuration
+// Specifies the packages to scan for entities. This is useful when entities are not located in the main application package or its subpackages.
+//    @EntityScan(basePackageClasses = {com.gray.bookservice.Book.class})
+// Enables Spring Data JPA repositories. It also configures the base package to scan for JPA repository interfaces.
+//    @EnableJpaRepositories(basePackageClasses = {com.gray.bookservice.IBookRespository.class})
 
-    @Bean
+    @Bean    // Defines a bean that implements CommandLineRunner. This bean will run the code within its run method after the application context is loaded.
     CommandLineRunner initDatabase(IBookRespository repository) {
         return args -> {
-            repository.save(new Book(0L, "The Hobbit", "1234567890123","AVAILABLE"));
-            repository.save(new Book(0L, "1984", "1234567890124","AVAILABLE"));
-            repository.save(new Book(0L, "The Catcher in the Rye", "1234567890125","AVAILABLE"));
-            repository.save(new Book(0L, "Wanna Rich?", "1234567890125","BORROWED"));
+            repository.save(new Book(0L, "How to Be Old: Lessons in Living Boldly from the Accidental Icon", "9780593471791","AVAILABLE"));
 
-            // add more books as needed
         };
     }
 }
 
 
-
-//public class DBSeeder implements CommandLineRunner {
-//
-////    @Bean
-////    CommandLineRunner initDBSeeder(IBookRespository reposotry)
-//
-//    private final IBookRespository bookRespository;
-//    @Override
-//    public void run(String... args)throws Exception{
-//        List<Book> bookList =List.of(
-//                Book.builder().id(0L).name("The Hobbit").isbn(UUID.randomUUID().toString()).build(),
-//                Book.builder().id(0L).name("1984").isbn(UUID.randomUUID().toString()).build(),
-//                Book.builder().id(0L).name("The Catcher in the Rye").isbn(UUID.randomUUID().toString()).build()
-//
-//
-////                            repository.save(new Book(0L, "The Hobbit", "1234567890123"));
-////            repository.save(new Book(0L, "1984", "1234567890124"));
-////            repository.save(new Book(0L, "The Catcher in the Rye", "1234567890125"));
-//        );
-//
-//        bookRespository.saveAll(bookList);
-////        bookRespository.saveAll(movies);
-////        bookRespository.findAll().forEach((movie ->
-////                {
-////                        System.out.println(movie.getId()+ "   "+movie.getName());
-////                        System.out.println( "=ISBN ==   "+movie.getIsbn());
-////                }
-////        ));
-//    }
-//
-//}

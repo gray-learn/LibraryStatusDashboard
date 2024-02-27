@@ -3,105 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borrowing Dashboard</title>
+    <title>Humber Library Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="dashboard.js"></script> <!-- Link to the external JavaScript file -->
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
-<h1>Borrowing Dashboard</h1>
+<h1>Humber Library Dashboard</h1>
 
 <!-- Section to display books -->
 <section id="book-list">
     <h2>Total Books</h2>
-    <ul id="books">
-        <!-- Books will be listed here -->
-    </ul>
+    <table id="totalBooksTable">
+        <thead>
+        <tr>
+            <th>Book ID</th>
+            <th>Book Name</th>
+            <th>Book ISBN</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Total books data will be inserted here -->
+        </tbody>
+    </table>
+</section>
+
+<section id="available-books">
     <h2>Available</h2>
-    <ul id="availableBooks">
-        <!-- Books will be listed here -->
-    </ul>
+    <table id="availableBooksTable">
+        <thead>
+        <tr>
+            <th>Book ID</th>
+            <th>Book Name</th>
+            <th>Book ISBN</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Available books data will be inserted here -->
+        </tbody>
+    </table>
+</section>
+
+<section id="borrowed-books">
     <h2>Borrowed</h2>
-    <ul id="borrowedBooks">
-        <!-- Books will be listed here -->
-    </ul>
+    <table id="borrowedBooksTable">
+        <thead>
+        <tr>
+            <th>Book ID</th>
+            <th>Book Name</th>
+            <th>Book ISBN</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Borrowed books data will be inserted here -->
+        </tbody>
+    </table>
+</section>
+
+
+<section>
+    <h2>Add New Book</h2>
+    <form id="addBookForm">
+        <label for="name">Book Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="isbn">ISBN:</label>
+        <input type="text" id="isbn" name="isbn" required><br><br>
+
+        <button type="submit">Add Book</button>
+    </form>
 </section>
 
 <!-- Form to borrow a book -->
 <section id="borrow-book">
     <h2>Borrow a Book</h2>
-    <form id="borrow-form">
-        <label for="book-id">Book ID:</label>
-        <input type="number" id="book-id" name="book-id" required>
-        <button type="submit">Borrow</button>
-    </form>
+    <label for="borrow-book-id">Book ID:</label>
+    <input type="number" id="borrow-book-id" name="borrow-book-id" required>
+    <button type="button" id="borrow-button">Borrow</button>
 </section>
 
 <!-- Form to return a book -->
 <section id="return-book">
     <h2>Return a Book</h2>
-    <form id="return-form">
-        <label for="return-book-id">Book ID:</label>
-        <input type="number" id="return-book-id" name="return-book-id" required>
-        <button type="submit">Return</button>
-    </form>
+    <label for="return-book-id">Book ID:</label>
+    <input type="number" id="return-book-id" name="return-book-id" required>
+    <button type="button" id="return-button">Return</button>
 </section>
 
-<!-- Form to return a book -->
-<section id="return-book">
+<!-- Form to report a missing book -->
+<section id="delete-book">
     <h2>Missing Book</h2>
-    <form id="return-form">
-        <label for="return-book-id">Book ID:</label>
-        <input type="number" id="return-book-id" name="return-book-id" required>
-        <button type="submit">Return</button>
-    </form>
+    <label for="delete-book-id">Book ID:</label>
+    <input type="number" id="delete-book-id" name="delete-book-id" required>
+    <button type="button" id="delete-button">Remove</button>
 </section>
 
-<script>
-    // Function to retrieve and display books
-    function loadBooks() {
-        $.get('/books', function(data) {
-            $('#books').empty();
-            data.forEach(function(book) {
-                $('#books').append('<li>' + book.name + ' - ' + book.status + '</li>');
-            });
-        });
-        $.get('/availableBooks', function(data) {
-            $('#availableBooks').empty();
-            data.forEach(function(book) {
-                $('#availableBooks').append('<li>' + book.name + ' - ' + book.status + '</li>');
-            });
-        });
-        $.get('/borrowedBooks', function(data) {
-            $('#borrowedBooks').empty();
-            data.forEach(function(book) {
-                $('#borrowedBooks').append('<li>' + book.name + ' - ' + book.status + '</li>');
-            });
-        });
-
-
-    }
-
-    // Function to handle book borrowing
-    $('#borrow-form').submit(function(event) {
-        event.preventDefault();
-        var bookId = $('#book-id').val();
-        $.post('/borrowingservice/borrow', { id: bookId }, function(response) {
-            alert('Book borrowed successfully!');
-            loadBooks(); // Reload the book list
-        });
-    });
-
-    // Function to handle book returning
-    $('#return-form').submit(function(event) {
-        event.preventDefault();
-        var bookId = $('#return-book-id').val();
-        $.post('/borrowingservice/return', { id: bookId }, function(response) {
-            alert('Book returned successfully!');
-            loadBooks(); // Reload the book list
-        });
-    });
-
-    // Initial load of books
-    loadBooks();
-</script>
 </body>
 </html>
